@@ -1,0 +1,49 @@
+<!--index.wxml-->
+<view class="container">
+  <view class='searchFiled'>
+    <icon type="search" color='rgb(156, 156, 156)'></icon>
+    <input class='input' placeholder="输入垃圾名称" confirmType="search" bindinput="seach" value='{{search}}'></input>
+    <icon type="cancel" color='rgb(156, 156, 156)' bindtap='clear'></icon>
+  </view>
+
+  <view class="collectionView" wx:if="{{keywords.length == 0}}">
+    <view wx:for="{{collections}}" wx:key="{{item.name}}" class='cell' bindtap='bindViewTap' data-index="{{index}}">
+      <view class="head">
+        <image class='icon' src="{{item.icon}}" style="background-color:{{item.color}}"></image>
+        <Text class="count">{{item.wasts.length}}</Text>
+      </view>
+      <text class="typeName">{{item.name}}</text>
+    </view>
+  </view>
+
+  <view class='searchList' wx:else>
+    <block wx:for="{{keywords}}" wx:key="*this">
+      <view class="searchCell" bindtap='searchSort' data-keyword='{{item}}'>{{item}}</view>
+      <view class='line'></view>
+    </block>
+  </view>
+</view>
+
+<view class='resultback' wx:if="{{selectedSort != null}}" bindtap='dismiss'>
+  <view class='resultView'>
+    <view class='resultHead'>
+      {{selectedSort.name}}
+    </view>
+    <view class='desView'>
+      <image class='bigIcon' src='{{selectedSort.icon}}' style="background-color:{{selectedSort.color}}"></image>
+      {{selectedSort.des}}
+    </view>
+    <view class='title'>
+      {{selectedSort.name}}主要包括
+    </view>
+    <view class='des'>
+      {{selectedSort.inc}}
+    </view>
+    <view class='title'>
+      {{selectedSort.name}}主要包括
+    </view>
+    <view class='des'>
+      {{selectedSort.req}}
+    </view>
+  </view>
+</view>
