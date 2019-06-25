@@ -49,21 +49,17 @@ Page({
   },
   onLoad() {
     var myThis = this
-    wx.request({
-      url: 'https://api.chanjianinc.com/mn/cat_list?ts=1560685658&vv=f33a7c14f66d8972eba982ca82602d16',
-      success(res) {
-        var result = []
-        for (var i = 0; i < 4; i++) {
-          var data = res.data.data[(i + 1).toString()]
-          var model = myThis.getSort(i)
-          model["wasts"] = data
-          result.push(model)
-        }
-        getApp().globalData.collections = result
-        myThis.setData({
-          collections: result
-        })
-      }
+    var res = require('../../resources/result.js'); 
+    var result = []
+    for (var i = 0; i < 4; i++) {
+      var data = res.result.data[(i + 1).toString()]
+      var model = myThis.getSort(i)
+      model["wasts"] = data
+      result.push(model)
+    }
+    getApp().globalData.collections = result
+    myThis.setData({
+      collections: result
     })
   },
   dismiss() {
