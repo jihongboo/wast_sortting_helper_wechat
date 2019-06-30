@@ -4,6 +4,6 @@
   flex-direction: column;
   align-items: center;
   justify-content: space-between;
-  padding: 200rpx 40rpx;
+  padding: 100rpx 40rpx;
   background-color: #eeeeee;
 } 
