@@ -42,7 +42,7 @@ Page({
       success(res) {
         var type = res.data.query_result_type_1.trashType
         myThis.setData({
-          selectedSort: myThis.getSort(type - 1)
+          selectedSort: myThis.getSort(myThis.handleSorch(type))
         })
       }
     })
@@ -67,10 +67,28 @@ Page({
       selectedSort: null
     })
   },
-  getSort(i) {
-    if (i == -4) {
-      i = 4
+  handleSorch(i) {
+    console.log(i)
+    switch (i) {
+      case 1:
+        i = 3
+        break
+      case 2:
+        i = 2
+        break
+      case 3:
+        i = 0
+        break
+      case 4:
+        i = 1
+        break
+      case -3:
+        i = 4
+        break
     }
+    return i
+  },
+  getSort(i) {
     var names = ["湿垃圾", "干垃圾", "可回收垃圾", "有害垃圾", "建筑垃圾"]
     var colors = ["#48D1CC", "#8B4513", "#7CFC00", "#FF0000", "#8B4513"]
     var des = ["日常生活垃圾产生的容易腐烂的生物质废弃物",
